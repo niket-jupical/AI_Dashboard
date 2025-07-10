@@ -1,0 +1,53 @@
+<templates id="groq_api_odoo">
+    <t t-name="groq_api_odoo.ai_dashboard" owl="1">
+        <section class="container">
+            <h1>Ask Groq AI</h1>
+
+            <!-- Question input field -->
+            <div>
+                <input type="text" t-model="state.question" placeholder="Enter your question here" class="form-control"/>
+            </div>
+
+            <!-- Ask button -->
+            <div class="mt-3">
+                <button t-on-click="askQuestion" class="btn btn-primary">         
+                    <t>Ask Question</t>
+                </button>
+            </div>
+
+            <!-- AI Response Table -->
+            <div t-if="state.response.length" class="oe_response mt-4">
+                <h4>Response:</h4>
+                <div style="max-height: 300px; overflow-y: auto; border: 1px solid #ddd;">
+                    <table class="table table-bordered">
+                        <tbody>
+                            <t t-foreach="state.response" t-as="row" t-key="row[0]">
+                                <tr>
+                                    <t t-foreach="row" t-as="cell" t-key="cell">
+                                        <td t-esc="cell"></td>
+                                    </t>
+                                </tr>
+                            </t>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Chart Display -->
+             <div t-if="state.chartData" class="chart-container mt-4">
+                <h4>Graphical Representation:</h4>
+                <table width="100%">
+                    <tr>
+                        <td width="50%" align="center">
+                            <canvas t-ref="chartCanvas"></canvas>
+                        </td>
+                        <td width="50%" align="center">
+                            <canvas t-ref="linechartCanvas"></canvas>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+        </section>
+    </t>
+</templates>

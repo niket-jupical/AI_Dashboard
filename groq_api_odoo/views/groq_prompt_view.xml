@@ -1,0 +1,29 @@
+<odoo>
+    <record id="view_groq_prompt_form" model="ir.ui.view">
+        <field name="name">groq.prompt.form</field>
+        <field name="model">groq.prompt</field>
+        <field name="arch" type="xml">
+            <form string="Groq AI Prompt">
+                <sheet>
+                    <group>
+                        <field name="name" placeholder="Type your question about Odoo modules"/>
+                        <field name="response" readonly="1"/>
+                    </group>
+                 
+                        <button type="object" string="Ask Groq AI" class="btn-primary" name="action_ask_groq"/>
+             
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_groq_prompt" model="ir.actions.act_window">
+        <field name="name">Groq AI Prompt</field>
+        <field name="res_model">groq.prompt</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_groq_prompt_root" name="Groq AI" sequence="1"/>
+    <menuitem id="menu_groq_prompt" parent="menu_groq_prompt_root" name="Ask Groq AI"
+              action="action_groq_prompt" sequence="10"/>
+</odoo>
